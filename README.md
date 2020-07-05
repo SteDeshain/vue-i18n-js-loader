@@ -50,7 +50,7 @@ chainWebpack: config => {
 
 ## Usage
 ### Basic usage
-You can use javascript in the i18n custom block now! But you have to export a javascript plain object representing the i18n messages by `default`.  
+You can use javascript in the i18n custom block now! You have to export a javascript plain object representing the i18n messages by `default`.  
 You can still use languages supported by [@intlify/vue-i18n-loader](https://github.com/intlify/vue-i18n-loader/tree/master)
 
 ``` html
@@ -72,7 +72,7 @@ export default {
 
 ### Import from other SFCs
 You can also import an i18n object from another SFC file.  
-But you have to watch out the **circular dependency** problem.
+But you have to take care of the **circular dependency** problem.
 
 ``` html
 <!-- a.vue -->
