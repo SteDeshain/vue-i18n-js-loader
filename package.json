@@ -1,6 +1,6 @@
 {
     "name": "vue-i18n-js-loader",
-    "version": "1.0.0",
+    "version": "1.0.1",
     "description": "It can load custom i18n block written in javascript language in a Vue SFC",
     "main": "./lib/index.js",
     "keywords": [
