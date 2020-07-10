@@ -18,18 +18,18 @@ $ npm install --save-dev vue-i18n-js-loader
 const vueI18nJSPlugin = require('vue-i18n-js-loader/lib/plugin.js');
 
 module.exports = {
-    plugins: {
-        new vueI18nJSPlugin();
-    },
-    module: {
-        rules: [
-            {
-                resourceQuery: /blockType=i18n/,
-                type: 'javascript/auto',
-                loader: 'vue-i18n-js-loader',
-            },
-        ]
-    }
+  plugins: {
+    new vueI18nJSPlugin();
+  },
+  module: {
+    rules: [
+      {
+        resourceQuery: /blockType=i18n/,
+        type: 'javascript/auto',
+        loader: 'vue-i18n-js-loader',
+      },
+    ]
+  }
 }
 ```
 
@@ -37,14 +37,14 @@ module.exports = {
 ``` js
 // in vue.config.js
 chainWebpack: config => {
-    config.module.rule('vue-i18n-js')
-        .resourceQuery(/blockType=i18n/)
-        .type('javascript/auto')
-        .use("i18n")
-            .loader('vue-i18n-js-loader');
-    
-    config.plugin('vue-i18n-js')
-        .use('vue-i18n-js-loader/lib/plugin.js');
+  config.module.rule('vue-i18n-js')
+    .resourceQuery(/blockType=i18n/)
+    .type('javascript/auto')
+    .use("i18n")
+      .loader('vue-i18n-js-loader');
+  
+  config.plugin('vue-i18n-js')
+    .use('vue-i18n-js-loader/lib/plugin.js');
 }
 ```
 
@@ -55,17 +55,17 @@ You can still use languages supported by [@intlify/vue-i18n-loader](https://gith
 
 ``` html
 <template>
-    <div>{{ $t('hello') }}</div>
+  <div>{{ $t('hello') }}</div>
 </template>
 
 <i18n lang="js">
 export default {
-    en: {
-        hello: 'Hello',
-    },
-    zhHans: {
-        hello: '你好',
-    },
+  en: {
+    hello: 'Hello',
+  },
+  zhHans: {
+    hello: '你好',
+  },
 }
 </i18n>
 ```
@@ -79,21 +79,21 @@ But you have to take care of the **circular dependency** problem.
 <script>
 // import B from './b.vue'; // This will cause the "circular dependency" problem, and will crack the application
 export default {
-    name: 'A',
-    components: {
-        // B
-    },
+  name: 'A',
+  components: {
+      // B
+  },
 }
 </script>
 
 <i18n lang="js" locale="en">
 export default {
-    fromA: 'From a.vue',
+  fromA: 'From a.vue',
 }
 </i18n>
 <i18n locale="zhHans">
 {
-    "fromA": "来自 a.vue"
+  "fromA": "来自 a.vue"
 }
 </i18n>
 ```
@@ -101,18 +101,18 @@ export default {
 ``` html
 <!-- b.vue -->
 <template>
-    <div>{{ $t('combined') }}</div>
+  <div>{{ $t('combined') }}</div>
 </template>
 
 <i18n lang="js">
 import { i18n as messagesFromA } from './a.vue';
 export default {
-    en: {
-        combined: 'Hello, ' + messagesFromA.en.fromA,
-    },
-    zhHans: {
-        combined: '你好， ' + messagesFromA.zhHans.fromA,
-    }
+  en: {
+    combined: 'Hello, ' + messagesFromA.en.fromA,
+  },
+  zhHans: {
+    combined: '你好， ' + messagesFromA.zhHans.fromA,
+  }
 }
 </i18n>
 ```
@@ -125,11 +125,11 @@ You can write any js code you want, but you **CANNOT** access the vue component!
 import { i18n } from './another.vue';
 import { upperCase } from 'lodash';
 export default {
-    en: {
-        baz: upperCase(i18n.en.foo),
-        // bar: this.something,     // illegal
-    },
-    // ...
+  en: {
+    baz: upperCase(i18n.en.foo),
+    // bar: this.something,   // illegal
+  },
+  // ...
 }
 </i18n>
 ```
